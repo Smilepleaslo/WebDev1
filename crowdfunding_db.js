@@ -12,3 +12,11 @@ app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"Homepage.html"));
 });
 
+app.get("/search",(req,res)=>{
+    res.sendFile(path.join(__dirname,"Searchfundraiser.html"));
+});
+
+app.get("/fundraiser",(req,res)=>{
+    res.sendFile(path.join(__dirname,"Fundraiser.html"));
+});
+
