@@ -10,3 +10,10 @@ app.get("/api/homepage", (req, res) => {
     res.sendFile(path.join(__dirname, "Homepage.html"));
 });
 
+app.get("/api/searchfundraiser", (req, res) => {
+    res.sendFile(path.join(__dirname, "searchfundraiser.html"));
+});
+
+app.get("/api/fundraiser", (req, res) => {
+    res.sendFile(path.join(__dirname, "fundraiser.html"));
+});
