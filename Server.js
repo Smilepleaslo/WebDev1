@@ -2,7 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const mysql = require("mysql2");
+
 const app = express();
+
+
+//setting up mySQL
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Apocalypse_07',
+    database: 'crowdfunding_db'
+  });
+
+db.connect((err) => {
+    if (err) throw err;
+    console.log('Connected!');
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
