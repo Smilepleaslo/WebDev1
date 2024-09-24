@@ -23,3 +23,18 @@ app.get("/fundraiser",(req,res)=>{
 app.listen(8080, ()=>{
     console.log("running in 8080");
 });
+
+// setup MySQL connection
+const mysql = require('mysql2');
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Apocalypse_07',
+    database: 'crowdfunding_db'
+  });
+
+db.connect((err) => {
+    if (err) throw err;
+    console.log('Connected!');
+});
