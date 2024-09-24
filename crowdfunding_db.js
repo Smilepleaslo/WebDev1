@@ -38,3 +38,9 @@ db.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
 });
+
+db.query('SELECT * FROM fundraiser', (err,rows) => {
+    if(err) throw err;
+    console.log('Data received from Db:');
+    console.log(rows);
+  });
