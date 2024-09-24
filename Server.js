@@ -6,6 +6,10 @@ const mysql = require("mysql2");
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 
 //setting up mySQL
 const db = mysql.createConnection({
@@ -13,14 +17,12 @@ const db = mysql.createConnection({
     user: 'root',
     password: 'Apocalypse_07',
     database: 'crowdfunding_db'
-  });
+});
 
 db.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/homepage", (req, res) => {
     res.sendFile(path.join(__dirname, "Homepage.html"));
