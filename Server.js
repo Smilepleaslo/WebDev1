@@ -35,3 +35,8 @@ app.get("/api/searchfundraiser", (req, res) => {
 app.get("/api/fundraiser", (req, res) => {
     res.sendFile(path.join(__dirname, "fundraiser.html"));
 });
+
+const PORT = 3060;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
