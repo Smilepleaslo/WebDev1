@@ -21,11 +21,11 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) throw err;
-    console.log('Connected!');
+    console.log('Connected to mySQL database!');
 });
 
 app.get("/api/homepage", (req, res) => {
-    res.sendFile(path.join(__dirname, "Homepage.html"));
+    res.sendFile(path.join(__dirname, "homepage.html"));
 });
 
 app.get("/api/searchfundraiser", (req, res) => {
@@ -34,6 +34,14 @@ app.get("/api/searchfundraiser", (req, res) => {
 
 app.get("/api/fundraiser", (req, res) => {
     res.sendFile(path.join(__dirname, "fundraiser.html"));
+});
+
+//get request for active fundraisers
+app.get("/api/fundraisers", (req, res) => {
+    db.query("SELECT * FROM FUNDRAISER WHERE ACTIVE = TRUE", (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
 });
 
 app.listen(PORT, () => {
