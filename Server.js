@@ -5,10 +5,10 @@ const path = require("path");
 const mysql = require("mysql2");
 
 const app = express();
+const PORT = 3060;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 
 //setting up mySQL
@@ -36,7 +36,6 @@ app.get("/api/fundraiser", (req, res) => {
     res.sendFile(path.join(__dirname, "fundraiser.html"));
 });
 
-const PORT = 3060;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
