@@ -46,9 +46,74 @@
         </form>
     </div>
 
-    <div id="results"></div>
-    <div id="error" class="error"></div>
+    <div id="data"></div>
+    <div id="error"></div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function searchFundraisers() {
+                const organizer = document.getElementById('organizer').value;
+                const city = document.getElementById('city').value;
+                const category = document.getElementById('category').value;
+                const errorDiv = document.getElementById('error');
+
+                if (!organizer && !city && !category) {
+                    errorDiv.innerHTML='Please enter at least one search criteria';
+                    return;
+                } else {
+                    errorDiv.innerHTML='';
+                }
+
+                const query = new URLSearchParams();
+                if (organizer) query.append('organizer', organizer);
+                if (city) query.append('city', city);
+                if (category) query.append('category', category);
+
+                const dataDiv = document.getElementById('data');
+                dataDiv.innerHTML = 'x';
+
+                fetch(`/api/fundraiser/search?${query.toString()}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        dataDiv.innerHTML = '';
+
+                        if (data.length > 0) {
+                            data.forEach(fundraiser => {
+                                const fundraiserLink = document.createElement('a');
+                                fundraiserLink.href = `/fundraiser?id=${fundraiser.FUNDRAISER_ID}`;
+                                fundraiserLink.textContent = `${fundraiser.CAPTION} (by ${fundraiser.ORGANISER}, ${fundraiser.CITY})`;
+
+                                const resultDiv = document.createElement('div');
+                                resultDiv.classList.add('result');
+                                resultDiv.appendChild(fundraiserLink);
+                                dataDiv.appendChild(resultDiv);
+                            });
+                        } else {
+                            const errorMessage = document.createElement('p');
+                            errorMessage.textContent = 'No Fundraisers Found';
+                            errorMessage.classList.add('error-message');
+                            dataDiv.appendChild(errorMessage);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching fundraisers:', error);
+                    });
+            }
+
+            function clearCheckBoxes() {
+                const errorDiv = document.getElementById('error');
+                errorDiv.innerHTML='';
+                const dataDiv = document.getElementById('data');
+                dataDiv.innerHTML='';
+                document.getElementById('fundraisersearchform').reset();
+                document.getElementById('results').innerHTML = '';
+            }
+            window.searchFundraisers = searchFundraisers;
+            window.clearCheckBoxes = clearCheckBoxes;
+        });
+
+    </script>
+    
     <div class="footer">
         <div class="support">
             <a href="accessibility.html">ACCESSIBILITY</a>
