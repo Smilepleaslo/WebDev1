@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-
+const cors = require("cors"); 
 const mysql = require("mysql2");
 
 const app = express();
@@ -9,6 +9,7 @@ const PORT = 3060;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 //setting up mySQL
