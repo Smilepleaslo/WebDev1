@@ -222,7 +222,7 @@
                         if (data.length > 0) {
                             data.forEach(fundraiser => {
                                 const fundraiserLink = document.createElement('a');
-                                fundraiserLink.href = `/fundraiser?id=${fundraiser.FUNDRAISER_ID}`;
+                                fundraiserLink.href = `/api/fundraiser?id=${fundraiser.FUNDRAISER_ID}`;
                                 fundraiserLink.textContent = `${fundraiser.CAPTION} (by ${fundraiser.ORGANISER}, ${fundraiser.CITY})`;
 
                                 const resultDiv = document.createElement('div');
