@@ -69,7 +69,7 @@ app.get("/api/categories", (req, res) => {
 });
 
 app.get("/api/fundraiser/search", (req,res) =>{
-    const {city} = req.query;
+    const {organizer, city, category} = req.query;
 
     const query = `
         SELECT
@@ -90,11 +90,21 @@ app.get("/api/fundraiser/search", (req,res) =>{
     const conditions = [];
     const queryParams = [];
 
+    if (organizer) {
+        conditions.push("F.ORGANISER = ?");
+        queryParams.push(organizer);
+    }
+
     if (city) {
         conditions.push("F.CITY = ?");
         queryParams.push(city);
     }
 
+    if (category) {
+        conditions.push("C.NAME = ?");
+        queryParams.push(category);
+    }
+    
     if (conditions.length > 0) {
         query += " AND " + conditions.join(" AND ");
     }

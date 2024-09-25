@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Fundraisers | Crowdfunding</title>
+</head>
+
+<body>
+    <div class="Nav">
+        <div class="right-nav">
+            <a href="homepage">HOME</a>
+            <a href="news.html">NEWS</a>
+            <a href="aboutus.html">ABOUT US</a>
+            <a href="searchfundraiser"> SEARCH </a>
+        </div>
+        <div class="left-nav">
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+        </div>
+    </div>
+
+    <div class="Content">
+        <h1>Search Fundraisers</h1>
+        <form id="fundraisersearchform">
+            <div class="Organiser">
+                <label for="organizer">Organizer:</label>
+                <input type="text" id="organizer" name="organizer">
+            </div>
+            <div class="form-group"></div>
+                <label for="organizer">City</label>
+                <input type="text" id="city" name="city">
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="">Select a Category</option>
+                    <option value="health">Health</option>
+                    <option value="education">Education</option>
+                    <option value="environment">Environment</option>
+ 
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="searchFundraisers()">Search</button>
+                <button type="reset" class="clear-btn">Clear</button>
+            </div>
+        </form>
+    </div>
+    
+<div id="results"></div>
+
+    <div class="footer">
+        <div class="support">
+            <a href="accessibility.html">ACCESSIBILITY</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="help.html">HELP</a>
+            <a href="sitemap.html">SITEMAP</a>
+        </div>
+        <div class="wrapper">
+            <p>&copy; 2024 Crowdfund. All rights reserved.</p>
+            <p>
+                <a href="terms.html">TERMS AND CONDITIONS</a> | 
+                <a href="Privacy.html">PRIVACY POLICY</a> 
+            </p>
+        </div>
+    </div>
+</body>
+</html>
