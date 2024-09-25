@@ -71,7 +71,7 @@ app.get("/api/categories", (req, res) => {
 app.get("/api/fundraiser/search", (req,res) =>{
     const {organizer, city, category} = req.query;
 
-    const query = `
+    let query = `
         SELECT
             F.FUNDRAISER_ID, 
             F.ORGANISER, 
@@ -118,7 +118,7 @@ app.get("/api/fundraiser/search", (req,res) =>{
 app.get("/api/fundraiser/:id", (req, res) => {
     const { id } = req.params;
 
-    const query = `
+    let query = `
         SELECT
             F.FUNDRAISER_ID, 
             F.ORGANISER, 

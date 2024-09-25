@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Fundraisers | Crowdfunding</title>
 </head>
-
 <body>
     <div class="Nav">
         <div class="right-nav">
             <a href="homepage">HOME</a>
             <a href="news.html">NEWS</a>
             <a href="aboutus.html">ABOUT US</a>
-            <a href="searchfundraiser"> SEARCH </a>
+            <a href="searchfundraiser">SEARCH</a>
         </div>
         <div class="left-nav">
             <a href="login.html">LOGIN</a>
@@ -23,33 +22,32 @@
     <div class="Content">
         <h1>Search Fundraisers</h1>
         <form id="fundraisersearchform">
-            <div class="Organiser">
+            <div class="form-group">
                 <label for="organizer">Organizer:</label>
                 <input type="text" id="organizer" name="organizer">
             </div>
-            <div class="form-group"></div>
-                <label for="organizer">City</label>
+            <div class="form-group">
+                <label for="city">City:</label>
                 <input type="text" id="city" name="city">
             </div>
-            
             <div class="form-group">
                 <label for="category">Category:</label>
                 <select id="category" name="category">
                     <option value="">Select a Category</option>
-                    <option value="health">Health</option>
-                    <option value="education">Education</option>
-                    <option value="environment">Environment</option>
- 
+                    <option value="MEDICAL">MEDICAL</option>
+                    <option value="EDUCATION">EDUCATION</option>
+                    <option value="ENVIRONMENT">ENVIRONMENT</option>
                 </select>
             </div>
             <div class="form-group">
                 <button type="button" onclick="searchFundraisers()">Search</button>
-                <button type="reset" class="clear-btn">Clear</button>
+                <button type="reset" class="clear-btn" onclick="clearCheckBoxes()">Clear</button>
             </div>
         </form>
     </div>
-    
-<div id="results"></div>
+
+    <div id="results"></div>
+    <div id="error" class="error"></div>
 
     <div class="footer">
         <div class="support">
@@ -62,7 +60,7 @@
             <p>&copy; 2024 Crowdfund. All rights reserved.</p>
             <p>
                 <a href="terms.html">TERMS AND CONDITIONS</a> | 
-                <a href="Privacy.html">PRIVACY POLICY</a> 
+                <a href="privacy.html">PRIVACY POLICY</a>
             </p>
         </div>
     </div>
