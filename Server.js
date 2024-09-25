@@ -69,7 +69,7 @@ app.get("/api/categories", (req, res) => {
 });
 
 app.get("/api/fundraiser/search", (req,res) =>{
-    const { city} = req.query;
+    const {city} = req.query;
 
     const query = `
         SELECT
@@ -94,7 +94,7 @@ app.get("/api/fundraiser/search", (req,res) =>{
         conditions.push("F.CITY = ?");
         queryParams.push(city);
     }
-    
+
     if (conditions.length > 0) {
         query += " AND " + conditions.join(" AND ");
     }
@@ -102,6 +102,31 @@ app.get("/api/fundraiser/search", (req,res) =>{
     db.query(query, queryParams, (err, results) => {
         if (err) throw err;
         res.json(results);
+    });
+});
+
+app.get("/api/fundraiser/:id", (req, res) => {
+    const { id } = req.params;
+
+    const query = `
+        SELECT
+            F.FUNDRAISER_ID, 
+            F.ORGANISER, 
+            F.CAPTION, 
+            F.TARGET_FUNDING, 
+            F.CURRENT_FUNDING, 
+            F.CITY, 
+            F.ACTIVE, 
+            F.CATEGORY_ID, 
+            C.NAME AS CATEGORY_NAME 
+        FROM FUNDRAISER F
+        JOIN CATEGORY C ON F.CATEGORY_ID = C.CATEGORY_ID
+        WHERE F.FUNDRAISER_ID = ?
+    `;
+
+    db.query(query, [id], (err, results) => {
+        if (err) throw err;
+        res.json(results[0]);
     });
 });
 
