@@ -38,7 +38,30 @@ app.get("/api/fundraiser", (req, res) => {
 
 //get request for active fundraisers
 app.get("/api/fundraisers", (req, res) => {
-    db.query("SELECT * FROM FUNDRAISER WHERE ACTIVE = TRUE", (err, results) => {
+    const query = `
+        SELECT
+            F.FUNDRAISER_ID, 
+            F.ORGANISER, 
+            F.CAPTION, 
+            F.TARGET_FUNDING, 
+            F.CURRENT_FUNDING, 
+            F.CITY, 
+            F.ACTIVE, 
+            F.CATEGORY_ID, 
+            C.NAME AS CATEGORY_NAME 
+        FROM FUNDRAISER F
+        JOIN CATEGORY C ON F.CATEGORY_ID = C.CATEGORY_ID
+        WHERE F.ACTIVE = TRUE
+    `;
+    db.query(query, (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
+
+
+app.get("/api/categories", (req, res) => {
+    db.query("SELECT * FROM category", (err, results) => {
         if (err) throw err;
         res.json(results);
     });
